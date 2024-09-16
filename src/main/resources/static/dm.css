@@ -1,0 +1,6 @@
+/* 기본 컨테이너 스타일 */
+.container {
+    max-width: 600px;
+    margin: 0 auto;  /* 중앙 정렬 */
+    padding: 20px;
+}

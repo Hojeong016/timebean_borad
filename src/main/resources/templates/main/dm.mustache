@@ -1,72 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tweet Card with Like and Comment</title>
-    <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="/dm.css">
 </head>
 <body>
 {{>layout/header}}
 
-<div class="container">
-    <div class="tweet-card">
-        <div class="profile">
-            <img src="profile.jpg" alt="Profile Image" class="profile-img">
-            <div class="user-info">
-                <h4>@username</h4>
-                <p>Posted 1h ago</p>
-            </div>
-        </div>
-        <p class="tweet-content">
-            This is an example of a tweet content that can contain text, links, and more.
-        </p>
-
-        <!-- 좋아요 및 댓글 버튼 -->
-        <div class="tweet-actions">
-            <button class="like-btn"><span class="heart">&#128154; </span> Like</button>
-            <button class="comment-btn">&#128172; Comment</button>
-        </div>
-
-        <!-- 댓글 섹션 -->
-        <div class="comment-section">
-            <p>Comment 1: This is the first comment!</p>
-            <p>Comment 2: Another comment appears here.</p>
-            <!-- 비동기적으로 추가 댓글 표시 -->
-            <div id="new-comments"></div>
-        </div>
-    </div>
+<div class="alert alert-warning" role="alert">
+    채팅 기능을 열심히 개발 중 입니다.
 </div>
 
-<!-- JavaScript 코드 -->
-<script>
-    // 좋아요 버튼 동작
-    document.querySelector('.like-btn').addEventListener('click', function() {
-        this.classList.toggle('liked');
-        const liked = this.classList.contains('liked');
-        this.innerHTML = liked ? '<span class="heart">&#128154;</span> Liked' : '<span class="heart">&#128154;</span> Like';
-    });
-
-    // 댓글 버튼 클릭 시 댓글 창 열기/닫기
-    document.querySelector('.comment-btn').addEventListener('click', function() {
-        var commentSection = this.closest('.tweet-card').querySelector('.comment-section');
-        if (commentSection.style.display === 'none' || commentSection.style.display === '') {
-            commentSection.style.display = 'block';  // 댓글 창 열기
-            // 댓글 불러오는 비동기 처리 예시 (Ajax 대체)
-            loadComments();
-        } else {
-            commentSection.style.display = 'none';  // 댓글 창 닫기
-        }
-    });
-
-    // 댓글을 비동기적으로 불러오는 함수 (Ajax를 통해 서버에서 불러오는 것처럼 시뮬레이션)
-    function loadComments() {
-        setTimeout(function() {
-            var newComments = document.getElementById('new-comments');
-            newComments.innerHTML = '<p>Comment 3: New comment loaded!</p>';
-        }, 1000);  // 1초 후에 새로운 댓글 추가
-    }
-</script>
 {{>layout/footer}}
 </body>
 </html>
