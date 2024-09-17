@@ -1,0 +1,104 @@
+/* 기본 컨테이너 스타일 */
+.container {
+    max-width: 600px;
+    margin: 0 auto;  /* 중앙 정렬 */
+    padding: 20px;
+}
+
+/* 트윗 카드 스타일 */
+.tweet-card {
+    width: 100%;
+    max-width: 680px; /* 최대 너비 설정 */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 auto 20px; /* 카드 간격 설정 */
+}
+
+/* 프로필 섹션 */
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.user-info h4 {
+    margin: 0;
+}
+
+/* 트윗 내용 */
+.tweet-content {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* 버튼 스타일 */
+.tweet-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end; /* 버튼들을 오른쪽으로 정렬 */
+    gap: 10px; /* 버튼들 간의 간격 */
+}
+
+.tweet-actions button {
+    background-color: #f4f4f4;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    position: relative;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.tweet-actions button:hover {
+    background-color: #e0e0e0;
+}
+
+/* 좋아요 버튼 스타일 */
+.like-btn {
+    display: flex;
+    align-items: center;
+}
+
+.like-btn.liked {
+    color: red; /* 좋아요 상태일 때 색상 변경 */
+    font-size: 16px;
+}
+
+.like-btn.liked .heart {
+    animation: heartBounce 0.5s ease;
+}
+
+@keyframes heartBounce {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 댓글 섹션 */
+.comment-section {
+    display: none;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.comment-section p {
+    font-size: 14px;
+    color: #333;
+}

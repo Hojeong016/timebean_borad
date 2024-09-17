@@ -1,72 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tweet Card with Like and Comment</title>
-    <link rel="stylesheet" href="/home.css">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="my.css">
+    <!-- Bootstrap CSS 링크 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 {{>layout/header}}
 
 <div class="container">
-    <div class="tweet-card">
-        <div class="profile">
-            <img src="profile.jpg" alt="Profile Image" class="profile-img">
-            <div class="user-info">
-                <h4>@username</h4>
-                <p>Posted 1h ago</p>
+    <!-- 프로필 헤더 -->
+    <div class="profile-header">
+        <img src="background.jpg" alt="Background Image" class="background-img">
+    </div>
+
+    <!-- 프로필 카드 -->
+    <div class="profile-card">
+        <img src="profile.jpg" alt="Profile Image" class="profile-img">
+        <div class="profile-info">
+            <h2>@username</h2>
+            <p class="bio">This is a short bio about the user.</p>
+        </div>
+        <div class="stats">
+            <div class="stat-item">
+                <h3>123</h3>
+                <p>Following</p>
+                <!-- Following 목록 드롭다운 -->
+                <div class="dropdown-menu">
+                    <p>Person 1</p>
+                    <p>Person 2</p>
+                    <p>Person 3</p>
+                    <!-- 추가 팔로우 목록 -->
+                </div>
+            </div>
+            <div class="stat-item">
+                <h3>456</h3>
+                <p>Followers</p>
+                <!-- Followers 목록 드롭다운 -->
+                <div class="dropdown-menu">
+                    <p>Follower 1</p>
+                    <p>Follower 2</p>
+                    <p>Follower 3</p>
+                    <!-- 추가 팔로워 목록 -->
+                </div>
             </div>
         </div>
-        <p class="tweet-content">
-            This is an example of a tweet content that can contain text, links, and more.
-        </p>
+    </div>
 
-        <!-- 좋아요 및 댓글 버튼 -->
-        <div class="tweet-actions">
-            <button class="like-btn"><span class="heart">&#128154; </span> Like</button>
-            <button class="comment-btn">&#128172; Comment</button>
-        </div>
+    <!-- 포스트 제목 및 메뉴 -->
+    <div class="posts-header">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#" data-target="#my-posts">My Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-target="#liked-posts">Liked Posts</a>
+            </li>
+        </ul>
+    </div>
 
-        <!-- 댓글 섹션 -->
-        <div class="comment-section">
-            <p>Comment 1: This is the first comment!</p>
-            <p>Comment 2: Another comment appears here.</p>
-            <!-- 비동기적으로 추가 댓글 표시 -->
-            <div id="new-comments"></div>
+    <!-- 작성한 글 목록 -->
+    <div id="my-posts" class="posts show">
+        <div class="post-card">
+            <p>This is an example of a post content.</p>
         </div>
+        <div class="post-card">
+            <p>Another post example with some content.</p>
+        </div>
+        <!-- 추가 포스트 -->
+    </div>
+
+    <div id="liked-posts" class="posts">
+        <div class="post-card">
+            <p>This is an example of a liked post content.</p>
+        </div>
+        <div class="post-card">
+            <p>Another liked post example with some content.</p>
+        </div>
+        <!-- 추가 포스트 -->
     </div>
 </div>
 
-<!-- JavaScript 코드 -->
+<!-- Bootstrap JS 및 Popper.js 링크 -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 <script>
-    // 좋아요 버튼 동작
-    document.querySelector('.like-btn').addEventListener('click', function() {
-        this.classList.toggle('liked');
-        const liked = this.classList.contains('liked');
-        this.innerHTML = liked ? '<span class="heart">&#128154;</span> Liked' : '<span class="heart">&#128154;</span> Like';
+    document.querySelectorAll('.nav-link').forEach(function(tab) {
+        tab.addEventListener('click', function(event) {
+            //event.preventDefault();
+
+            // 모든 posts 숨기기
+            document.querySelectorAll('.posts').forEach(function(postSection) {
+                postSection.classList.remove('show');
+            });
+
+            // 모든 nav-link에서 active 클래스 제거
+            document.querySelectorAll('.nav-link').forEach(function(link) {
+                link.classList.remove('active');
+            });
+
+            // 클릭한 탭에 active 클래스 추가
+            this.classList.add('active');
+
+            // 해당 데이터 타겟을 보여줍니다.
+            const targetId = this.getAttribute('data-target');
+            document.querySelector(targetId).classList.add('show');
+        });
     });
 
-    // 댓글 버튼 클릭 시 댓글 창 열기/닫기
-    document.querySelector('.comment-btn').addEventListener('click', function() {
-        var commentSection = this.closest('.tweet-card').querySelector('.comment-section');
-        if (commentSection.style.display === 'none' || commentSection.style.display === '') {
-            commentSection.style.display = 'block';  // 댓글 창 열기
-            // 댓글 불러오는 비동기 처리 예시 (Ajax 대체)
-            loadComments();
-        } else {
-            commentSection.style.display = 'none';  // 댓글 창 닫기
+    document.querySelectorAll('.stat-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+            const dropdownMenu = this.querySelector('.dropdown-menu');
+
+            // 이미 열려있는 드롭다운을 닫기
+            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+                if (menu !== dropdownMenu) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // 현재 클릭된 드롭다운 토글
+            dropdownMenu.classList.toggle('show');
+        });
+    });
+
+    // 클릭 외부 영역을 클릭하면 드롭다운 메뉴 닫기
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.stat-item')) {
+            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
         }
     });
-
-    // 댓글을 비동기적으로 불러오는 함수 (Ajax를 통해 서버에서 불러오는 것처럼 시뮬레이션)
-    function loadComments() {
-        setTimeout(function() {
-            var newComments = document.getElementById('new-comments');
-            newComments.innerHTML = '<p>Comment 3: New comment loaded!</p>';
-        }, 1000);  // 1초 후에 새로운 댓글 추가
-    }
 </script>
 {{>layout/footer}}
 </body>
+
 </html>

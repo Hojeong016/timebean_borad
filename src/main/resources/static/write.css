@@ -1,0 +1,61 @@
+
+    /* CSS 코드 */
+.post-form {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.post-form textarea {
+    resize: none;
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 120px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.post-form textarea::placeholder {
+    color: #ccc;
+}
+
+.post-form .media-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.media-buttons button {
+    background-color: #e1e8ed;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    color: #1da1f2;
+    font-size: 18px;
+}
+
+.media-buttons button:hover {
+    background-color: #d5e3eb;
+}
+
+.post-form .submit-btn {
+    background-color: #1da1f2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.post-form .submit-btn:hover {
+    background-color: #0c85d0;
+}
+
+/* 숨겨진 사용자 ID 필드 */
+.hidden {
+    display: none;
+}
