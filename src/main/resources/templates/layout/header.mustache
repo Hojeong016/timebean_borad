@@ -14,7 +14,8 @@
         /* CSS 코드 */
         .navbar .container-fluid {
             display: flex;
-            justify-content: flex-end; /* 입력창 왼쪽 정렬 */
+            justify-content: space-between; /* 양쪽 끝으로 정렬 */
+            align-items: center; /* 수직 정렬 */
         }
 
         .input-group {
@@ -48,17 +49,33 @@
                 </li>
             </ul>
         </div>
-    </div>
-    <form class="container-fluid">
-        <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">@</span>
-            <input type="text" class="form-control" placeholder="친구 검색" aria-label="Username" aria-describedby="basic-addon1">
+
+        <!-- + 버튼에 tooltip 적용 -->
+        <div class="newWrite me-3">
+            <a href="/newWrite" class="btn btn-outline-secondary" data-bs-toggle="tooltip" title="새 게시물">+</a>
         </div>
-    </form>
+
+
+        <!-- 검색창을 오른쪽으로 배치 -->
+        <form class="d-flex">
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                <input type="text" class="form-control" placeholder="친구 검색" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </form>
+    </div>
 </nav>
 
 <!-- Bootstrap JS and Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+<!-- Tooltip 활성화 스크립트 -->
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
 </body>
 </html>
