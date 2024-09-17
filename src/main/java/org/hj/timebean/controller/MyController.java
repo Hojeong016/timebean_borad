@@ -11,4 +11,8 @@ public class MyController {
     public String myPage(/*@PathVariable("accountId") String accountId*/) {
         return "main/my";
     }
+
+    //내가 쓴 글 목록 보기
+    //좋아요한 글 목록보기
+
 }
